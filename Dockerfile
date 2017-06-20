@@ -27,7 +27,7 @@ RUN set -ex \
 		pdo_mysql \
 		pdo_pgsql \
 		pgsql \
-	
+
 	# Add user for app
 	&& addgroup -g ${GID} app \
 	&& adduser -u ${UID} -h /opt/app -H -G app -s /sbin/nologin -D app \
@@ -42,7 +42,7 @@ RUN set -ex \
 	&& php /tmp/composer-setup.php --no-ansi --install-dir=/usr/local/bin --filename=composer --snapshot \
 
 	# Download latest
-	&& git clone https://github.com/fredsted/webhook.site.git /opt/app/ \
+	&& git clone https://github.com/NeuraLabs/webhook.site.git /opt/app/ \
 
 	# Remove dev packages and clear package cache
 	&& apk del \
@@ -76,5 +76,5 @@ COPY root /
 # Make run.sh executable
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-# Run 
+# Run
 CMD ["/usr/local/bin/entrypoint.sh"]
